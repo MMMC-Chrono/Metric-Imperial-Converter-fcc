@@ -7,4 +7,13 @@ let units = {
     kg: "lbs",
 }
 
-module.exports = { units }
+let long_form = {
+    gal: 'gallons',
+    L: "liters",
+    mi: "miles",
+    km: "kilometers",
+    lbs: "pounds",
+    kg: "kilograms",
+}
+
+module.exports = { units, long_form }

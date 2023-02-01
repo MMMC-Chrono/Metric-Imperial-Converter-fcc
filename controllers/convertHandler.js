@@ -1,4 +1,4 @@
-const { units } = require('../convertions')
+const { units, long_form } = require('../convertions')
 
 function ConvertHandler() {
   this.getNum = function(input) {
@@ -23,11 +23,15 @@ function ConvertHandler() {
     let unit = /[a-zA-z]+/i.exec(input)
     let result = unit[0]
 
+    result = result === 'l'? result.toUpperCase() :
+             result ==='L'? result :
+             result.toLowerCase();
+
     if (units.hasOwnProperty(result)) {
       return result
     }
 
-    return 'invalid input unit'
+    return 'invalid unit'
 
   };
   
@@ -46,7 +50,7 @@ function ConvertHandler() {
     if (units.hasOwnProperty(input_unit)) {
       return input_unit;
     }
-    return 'invalid input unit';
+    return 'invalid unit';
 
   };
   
@@ -64,14 +68,11 @@ function ConvertHandler() {
     }
     let validate_unit = this.spellOutUnit(initUnit)
     let result = (+initNum * cal[validate_unit]).toFixed(5)
-    console.log(+result)
     return +result
   };
   
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
-    let result;
-    
-    return result;
+    return `${initNum} ${long_form[initUnit]} converts to ${returnNum} ${long_form[returnUnit]}`
   };
   
 }
